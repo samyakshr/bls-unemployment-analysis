@@ -1,0 +1,6 @@
+Metro,n,mean_rate,median_rate,min_rate,max_rate,sd_rate
+Columbus,120,4.244,4,3.1,12.8,1.429
+Cincinnati,120,4.346,4.15,3.3,13.3,1.373
+United States,120,4.684,4.1,3.4,14.8,1.733
+Ohio,120,4.894,4.5,3.4,16.5,1.686
+Cleveland,120,5.242,4.8,3.5,21,2.264
