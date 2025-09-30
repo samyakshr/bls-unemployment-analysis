@@ -18,6 +18,44 @@ This project analyzes unemployment data from 2015-2024 for:
 - **Consistent advantage** maintained throughout the entire 2015-2024 period
 - **Strong COVID recovery** with Columbus showing the most resilience
 
+## 📈 Results Story
+
+### Columbus's Consistent Leadership
+
+![Main Trends](visualizations/sa_main_trends.jpg)
+
+The main trends chart reveals Columbus's sustained advantage over the entire decade. While all metros experienced similar economic cycles, Columbus consistently maintained the lowest unemployment rates, demonstrating remarkable economic stability.
+
+### Columbus vs. Regional Peers
+
+![Ranking Analysis](visualizations/sa_ranking.jpg)
+
+Columbus clearly leads the pack with a 4.24% average unemployment rate, followed by Cincinnati (4.35%), United States (4.68%), Ohio state (4.89%), and Cleveland (5.24%). This ranking shows Columbus not only outperforms its Ohio peers but also beats the national average.
+
+### COVID-19 Impact and Recovery
+
+![COVID Analysis](visualizations/sa_covid_analysis.jpg)
+
+The COVID-19 crisis tested all metros, but Columbus showed exceptional resilience. While all areas experienced sharp spikes in 2020, Columbus maintained the lowest peak unemployment and demonstrated the strongest recovery trajectory, reinforcing its economic leadership.
+
+### Columbus vs. Ohio vs. United States
+
+![Columbus Focus](visualizations/sa_columbus_focus.jpg)
+
+This focused comparison highlights Columbus's consistent outperformance against both Ohio state and national benchmarks. The blue line representing Columbus runs consistently below both the dashed Ohio line and the dotted US line, showcasing sustained regional economic leadership.
+
+### Distribution Analysis
+
+![Boxplot Analysis](visualizations/sa_boxplot.jpg)
+
+The distribution analysis reveals Columbus's superior performance across all statistical measures. Columbus shows the lowest median unemployment rate (4.0%) with the tightest distribution, indicating both lower unemployment and greater stability compared to other metros.
+
+### Comprehensive Dashboard
+
+![Dashboard View](visualizations/sa_dashboard.jpg)
+
+The comprehensive dashboard synthesizes all key findings, providing a complete picture of Columbus's economic performance relative to regional and national benchmarks.
+
 ## 📁 Repository Structure
 
 ```
@@ -48,8 +86,8 @@ BLS/
 
 1. **Clone the repository**
    ```bash
-   git clone [repository-url]
-   cd BLS
+   git clone https://github.com/samyakshr/bls-unemployment-analysis.git
+   cd bls-unemployment-analysis
    ```
 
 2. **Install R dependencies**
@@ -79,9 +117,17 @@ BLS/
 - **Time Period**: January 2015 - December 2024
 - **Analysis**: Time series analysis, statistical comparisons, and visualizations
 
-## 📊 Visualizations
+## 📊 Data Sources
 
-All visualizations are high-resolution (300 DPI) JPG files with white backgrounds, ready for presentations or reports. Located in the `visualizations/` folder.
+Bureau of Labor Statistics. "Unemployment Rate for Columbus, OH (MSA)." *Federal Reserve Economic Data*, Federal Reserve Bank of St. Louis, 2024, fred.stlouisfed.org/series/COLU139UR.
+
+Bureau of Labor Statistics. "Unemployment Rate for Cincinnati, OH (MSA)." *Federal Reserve Economic Data*, Federal Reserve Bank of St. Louis, 2024, fred.stlouisfed.org/series/CINC139UR.
+
+Bureau of Labor Statistics. "Unemployment Rate for Cleveland, OH (MSA)." *Federal Reserve Economic Data*, Federal Reserve Bank of St. Louis, 2024, fred.stlouisfed.org/series/CLEV439UR.
+
+Bureau of Labor Statistics. "Unemployment Rate for Ohio." *Federal Reserve Economic Data*, Federal Reserve Bank of St. Louis, 2024, fred.stlouisfed.org/series/OHUR.
+
+Bureau of Labor Statistics. "Unemployment Rate." *Federal Reserve Economic Data*, Federal Reserve Bank of St. Louis, 2024, fred.stlouisfed.org/series/UNRATE.
 
 ## 🛠️ Technical Details
 
