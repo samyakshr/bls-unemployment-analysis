@@ -1,4 +1,4 @@
-# BLS Unemployment Analysis: Columbus vs. Ohio Metros
+# Unemployment Analysis: Columbus vs. Ohio Metros
 
 An analysis of unemployment trends in Columbus, Ohio compared to other major Ohio metropolitan areas and the United States using seasonally adjusted data from Bureau of Labor Statistics (BLS) and FRED (Federal Reserve Economic Data).
 
@@ -38,7 +38,7 @@ This dashboard synthesizes all key findings, providing a complete view of unempl
 
 This project is a personal, educational analysis and should not be used for business, policy, or academic purposes without further validation. It uses seasonally adjusted FRED data from 2015-2024 and only includes three Ohio metropolitan areas, which limits geographic scope and excludes rural regions. While patterns and correlations are highlighted, no causal claims are made, and unemployment rates alone do not capture broader economic realities such as wages, underemployment, demographics, or industry composition. Monthly data may also have sampling variability, timing differences, or methodological inconsistencies across sources. Overall, the findings provide a descriptive overview of unemployment trends, but any professional use would require expanded data, additional testing, and more comprehensive analysis.
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 BLS/
