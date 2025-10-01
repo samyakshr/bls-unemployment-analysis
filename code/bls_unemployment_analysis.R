@@ -1,9 +1,6 @@
-# Fixed Seasonally Adjusted Unemployment Analysis
-# Using FRED data for Columbus, Cincinnati, Cleveland, Ohio, and US
-# Author: [Your Name]
-# Date: [Current Date]
+# BLS Unemployment Analysis: Columbus vs. Ohio Metros
+# Author: Samyak Shrestha
 
-# Load required libraries
 library(readr)
 library(dplyr)
 library(ggplot2)
@@ -13,39 +10,33 @@ library(tidyr)
 library(gridExtra)
 library(cowplot)
 
-# Set working directory
-setwd("/Users/samyakshrestha/Downloads/BLS")
+# DATA LOADING AND PROCESSING
 
-cat("=== FIXED SEASONALLY ADJUSTED UNEMPLOYMENT ANALYSIS ===\n")
-
-# Load all seasonally adjusted data
-columbus_sa <- read_csv("COLU139UR.csv") %>%
+columbus_sa <- read_csv("data/COLU139UR.csv") %>%
   mutate(observation_date = as.Date(observation_date)) %>%
   rename(UnemploymentRate = COLU139UR) %>%
   mutate(Metro = "Columbus")
 
-cincinnati_sa <- read_csv("CINC139UR.csv") %>%
+cincinnati_sa <- read_csv("data/CINC139UR.csv") %>%
   mutate(observation_date = as.Date(observation_date)) %>%
   rename(UnemploymentRate = CINC139UR) %>%
   mutate(Metro = "Cincinnati")
 
-cleveland_sa <- read_csv("CLEV439UR.csv") %>%
+cleveland_sa <- read_csv("data/CLEV439UR.csv") %>%
   mutate(observation_date = as.Date(observation_date)) %>%
   rename(UnemploymentRate = CLEV439UR) %>%
   mutate(Metro = "Cleveland")
 
-ohio_sa <- read_csv("OHUR.csv") %>%
+ohio_sa <- read_csv("data/OHUR.csv") %>%
   mutate(observation_date = as.Date(observation_date)) %>%
   rename(UnemploymentRate = OHUR) %>%
   mutate(Metro = "Ohio")
 
 # Load US data from our existing clean dataset (already seasonally adjusted)
-us_sa <- read_csv("bls_unemployment_clean.csv") %>%
+us_sa <- read_csv("data/seasonally_adjusted_unemployment.csv") %>%
   filter(Metro == "United States") %>%
-  select(Date, UnemploymentRate) %>%
-  rename(observation_date = Date) %>%
-  mutate(observation_date = as.Date(observation_date)) %>%
-  mutate(Metro = "United States")
+  select(observation_date, UnemploymentRate, Metro) %>%
+  mutate(observation_date = as.Date(observation_date))
 
 # Combine all seasonally adjusted data
 sa_data <- bind_rows(columbus_sa, cincinnati_sa, cleveland_sa, ohio_sa, us_sa) %>%
@@ -72,7 +63,6 @@ sa_summary <- sa_data %>%
 cat("Seasonally Adjusted Summary Statistics:\n")
 print(sa_summary)
 
-# Create color scheme
 metro_colors <- c(
   "Columbus" = "#1f77b4",
   "Cincinnati" = "#ff7f0e",
@@ -81,9 +71,7 @@ metro_colors <- c(
   "United States" = "#e377c2"
 )
 
-# =============================================================================
-# 1. MAIN TRENDS CHART (Seasonally Adjusted)
-# =============================================================================
+# VISUALIZATION 1: MAIN TRENDS CHART
 
 cat("Creating main trends chart...\n")
 
@@ -101,8 +89,7 @@ main_trends_sa <- ggplot(sa_data, aes(x = observation_date, y = UnemploymentRate
   scale_x_date(date_labels = "%Y", date_breaks = "2 years") +
   scale_y_continuous(labels = scales::percent_format(scale = 1)) +
   labs(
-    title = "Seasonally Adjusted Unemployment Rate Trends (2015-2024)",
-    subtitle = "Columbus consistently outperforms regional and national benchmarks",
+    title = "Unemployment Rate Trends by Metro Area (2015-2024)",
     x = "Date",
     y = "Unemployment Rate (%)",
     color = "Metro Area"
@@ -116,11 +103,9 @@ main_trends_sa <- ggplot(sa_data, aes(x = observation_date, y = UnemploymentRate
   ) +
   guides(linetype = "none", linewidth = "none")
 
-ggsave("sa_main_trends.jpg", main_trends_sa, width = 14, height = 8, dpi = 300, bg = "white")
+ggsave("visualizations/sa_main_trends.jpg", main_trends_sa, width = 14, height = 8, dpi = 300, bg = "white")
 
-# =============================================================================
-# 2. COLUMBUS FOCUS CHART
-# =============================================================================
+# VISUALIZATION 2: COLUMBUS FOCUS CHART
 
 cat("Creating Columbus focus chart...\n")
 
@@ -147,11 +132,9 @@ columbus_focus_sa <- ggplot(sa_data, aes(x = observation_date, y = UnemploymentR
     panel.background = element_rect(fill = "white", color = NA)
   )
 
-ggsave("sa_columbus_focus.jpg", columbus_focus_sa, width = 14, height = 8, dpi = 300, bg = "white")
+ggsave("visualizations/sa_columbus_focus.jpg", columbus_focus_sa, width = 14, height = 8, dpi = 300, bg = "white")
 
-# =============================================================================
-# 3. RANKING CHART
-# =============================================================================
+# VISUALIZATION 3: RANKING CHART
 
 cat("Creating ranking chart...\n")
 
@@ -171,8 +154,7 @@ ranking_sa <- ggplot(ranking_data_sa, aes(x = Metro, y = avg_rate, fill = is_col
   scale_fill_manual(values = c("FALSE" = "lightgray", "TRUE" = metro_colors["Columbus"])) +
   scale_y_continuous(labels = scales::percent_format(scale = 1)) +
   labs(
-    title = "Average Unemployment Rates: Columbus Leads Regional Performance (2015-2024)",
-    subtitle = "Seasonally adjusted data - Columbus ranks #1 among all metros",
+    title = "Average Unemployment Rates by Metro Area (2015-2024)",
     x = "Metro Area",
     y = "Average Unemployment Rate (%)"
   ) +
@@ -184,11 +166,9 @@ ranking_sa <- ggplot(ranking_data_sa, aes(x = Metro, y = avg_rate, fill = is_col
     panel.background = element_rect(fill = "white", color = NA)
   )
 
-ggsave("sa_ranking.jpg", ranking_sa, width = 12, height = 8, dpi = 300, bg = "white")
+ggsave("visualizations/sa_ranking.jpg", ranking_sa, width = 12, height = 8, dpi = 300, bg = "white")
 
-# =============================================================================
-# 4. COVID ANALYSIS
-# =============================================================================
+# VISUALIZATION 4: COVID ANALYSIS
 
 cat("Creating COVID analysis chart...\n")
 
@@ -204,8 +184,7 @@ covid_analysis_sa <- ggplot(sa_data, aes(x = observation_date, y = UnemploymentR
   scale_x_date(date_labels = "%Y", date_breaks = "1 year") +
   scale_y_continuous(labels = scales::percent_format(scale = 1)) +
   labs(
-    title = "COVID-19 Impact & Recovery: Columbus Shows Strong Resilience (2015-2024)",
-    subtitle = "Seasonally adjusted data showing crisis performance and recovery",
+    title = "COVID-19 Impact and Recovery Analysis (2015-2024)",
     x = "Date",
     y = "Unemployment Rate (%)",
     color = "Metro Area"
@@ -218,11 +197,9 @@ covid_analysis_sa <- ggplot(sa_data, aes(x = observation_date, y = UnemploymentR
     panel.background = element_rect(fill = "white", color = NA)
   )
 
-ggsave("sa_covid_analysis.jpg", covid_analysis_sa, width = 14, height = 8, dpi = 300, bg = "white")
+ggsave("visualizations/sa_covid_analysis.jpg", covid_analysis_sa, width = 14, height = 8, dpi = 300, bg = "white")
 
-# =============================================================================
-# 5. COLUMBUS VS OHIO VS US COMPARISON
-# =============================================================================
+# VISUALIZATION 5: COLUMBUS VS OHIO VS US COMPARISON
 
 cat("Creating Columbus vs Ohio vs US comparison...\n")
 
@@ -265,11 +242,9 @@ columbus_ohio_us_chart <- columbus_ohio_us_chart +
            label = "Columbus consistently\nbelow Ohio and US", 
            hjust = 0, vjust = 1, color = "#1f77b4", size = 4)
 
-ggsave("sa_columbus_ohio_us.jpg", columbus_ohio_us_chart, width = 14, height = 8, dpi = 300, bg = "white")
+ggsave("visualizations/sa_columbus_ohio_us.jpg", columbus_ohio_us_chart, width = 14, height = 8, dpi = 300, bg = "white")
 
-# =============================================================================
-# 6. EDA BOXPLOT
-# =============================================================================
+# VISUALIZATION 6: EDA BOXPLOT
 
 cat("Creating EDA boxplot...\n")
 
@@ -278,7 +253,7 @@ boxplot_sa <- ggplot(sa_data, aes(x = Metro, y = UnemploymentRate, fill = Metro)
   scale_fill_manual(values = metro_colors) +
   scale_y_continuous(labels = scales::percent_format(scale = 1)) +
   labs(
-    title = "Unemployment Rate Distributions by Metro (2015-2024)",
+    title = "Unemployment Rate Distributions by Metro Area (2015-2024)",
     subtitle = "Seasonally adjusted data showing Columbus's consistent advantage",
     x = "Metro Area",
     y = "Unemployment Rate (%)"
@@ -292,11 +267,9 @@ boxplot_sa <- ggplot(sa_data, aes(x = Metro, y = UnemploymentRate, fill = Metro)
   ) +
   stat_summary(fun = mean, geom = "point", shape = 23, size = 3, color = "red")
 
-ggsave("sa_boxplot.jpg", boxplot_sa, width = 12, height = 8, dpi = 300, bg = "white")
+ggsave("visualizations/sa_boxplot.jpg", boxplot_sa, width = 12, height = 8, dpi = 300, bg = "white")
 
-# =============================================================================
-# 7. DASHBOARD
-# =============================================================================
+# VISUALIZATION 7: DASHBOARD
 
 cat("Creating dashboard...\n")
 
@@ -313,15 +286,11 @@ dashboard_sa <- plot_grid(
 legend <- get_legend(main_trends_sa + theme(legend.position = "bottom"))
 dashboard_final_sa <- plot_grid(dashboard_sa, legend, ncol = 1, rel_heights = c(1, 0.1))
 
-ggsave("sa_dashboard.jpg", dashboard_final_sa, width = 16, height = 12, dpi = 300, bg = "white")
-
-# =============================================================================
-# 8. SAVE DATA
-# =============================================================================
+ggsave("visualizations/sa_dashboard.jpg", dashboard_final_sa, width = 16, height = 12, dpi = 300, bg = "white")
 
 # Save seasonally adjusted data
-write_csv(sa_data, "seasonally_adjusted_unemployment.csv")
-write_csv(sa_summary, "sa_summary_statistics.csv")
+write_csv(sa_data, "data/seasonally_adjusted_unemployment.csv")
+write_csv(sa_summary, "data/sa_summary_statistics.csv")
 
 # Calculate advantages
 columbus_avg <- sa_summary$mean_rate[sa_summary$Metro == "Columbus"]
@@ -330,7 +299,9 @@ us_avg <- sa_summary$mean_rate[sa_summary$Metro == "United States"]
 cincinnati_avg <- sa_summary$mean_rate[sa_summary$Metro == "Cincinnati"]
 cleveland_avg <- sa_summary$mean_rate[sa_summary$Metro == "Cleveland"]
 
-cat("\n=== SEASONALLY ADJUSTED ANALYSIS COMPLETE ===\n")
+# SUMMARY OUTPUT
+
+cat("\n=== ANALYSIS COMPLETE ===\n")
 cat("Files created:\n")
 cat("✓ sa_main_trends.jpg - Main trends chart\n")
 cat("✓ sa_columbus_focus.jpg - Columbus focus chart\n")
@@ -354,3 +325,5 @@ cat("• Over Ohio:", round(ohio_avg - columbus_avg, 3), "percentage points\n")
 cat("• Over US:", round(us_avg - columbus_avg, 3), "percentage points\n")
 cat("• Over Cincinnati:", round(cincinnati_avg - columbus_avg, 3), "percentage points\n")
 cat("• Over Cleveland:", round(cleveland_avg - columbus_avg, 3), "percentage points\n")
+
+cat("\n=== END OF ANALYSIS ===\n")
