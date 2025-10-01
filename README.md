@@ -18,13 +18,25 @@ This project analyzes unemployment data from 2015-2024 for:
 - **Consistent patterns** observed across all metros throughout the 2015-2024 period
 - **COVID-19 impact** affected all metros similarly, with varying recovery trajectories
 
-## Results Story
+## Results Summary
 
-### Dashboard
+| Metro | Average Rate | Rank |
+|-------|-------------|------|
+| Columbus | 4.24% | 1st |
+| Cincinnati | 4.35% | 2nd |
+| United States | 4.68% | 3rd |
+| Ohio | 4.89% | 4th |
+| Cleveland | 5.24% | 5th |
+
+## Results Story
 
 ![Dashboard View](visualizations/sa_dashboard.jpg)
 
 This dashboard synthesizes all key findings, providing a complete view of unemployment patterns across metropolitan areas and their relationship to regional and national benchmarks.
+
+## Data Limitation
+
+This project is a personal, educational analysis and should not be used for business, policy, or academic purposes without further validation. It uses seasonally adjusted FRED data from 2015-2024 and only includes three Ohio metropolitan areas, which limits geographic scope and excludes rural regions. While patterns and correlations are highlighted, no causal claims are made, and unemployment rates alone do not capture broader economic realities such as wages, underemployment, demographics, or industry composition. Monthly data may also have sampling variability, timing differences, or methodological inconsistencies across sources. Overall, the findings provide a descriptive overview of unemployment trends, but any professional use would require expanded data, additional testing, and more comprehensive analysis.
 
 ## 📁 Repository Structure
 
@@ -68,16 +80,6 @@ BLS/
    ```r
    source("code/bls_unemployment_analysis.R")
    ```
-
-## Results Summary
-
-| Metro | Average Rate | Rank |
-|-------|-------------|------|
-| Columbus | 4.24% | 1st |
-| Cincinnati | 4.35% | 2nd |
-| United States | 4.68% | 3rd |
-| Ohio | 4.89% | 4th |
-| Cleveland | 5.24% | 5th |
 
 ## Methodology
 
