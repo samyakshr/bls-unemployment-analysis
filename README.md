@@ -1,8 +1,8 @@
 # BLS Unemployment Analysis: Columbus vs. Ohio Metros
 
-A comprehensive analysis of unemployment trends in Columbus, Ohio compared to other major Ohio metropolitan areas and the United States using seasonally adjusted data from FRED (Federal Reserve Economic Data).
+An analysis of unemployment trends in Columbus, Ohio compared to other major Ohio metropolitan areas and the United States using seasonally adjusted data from Bureau of Labor Statistics (BLS) and FRED (Federal Reserve Economic Data).
 
-## 📊 Analysis Overview
+## Analysis Overview
 
 This project analyzes unemployment data from 2015-2024 for:
 - **Columbus, OH** (COLU139UR)
@@ -11,48 +11,47 @@ This project analyzes unemployment data from 2015-2024 for:
 - **Ohio State** (OHUR)
 - **United States** (National Average)
 
-## 🎯 Key Findings
+## Key Findings
 
-- **Columbus leads all metros** with the lowest average unemployment rate (4.24%)
-- **Columbus outperforms** Ohio state by 0.65 percentage points and US by 0.44 percentage points
-- **Consistent advantage** maintained throughout the entire 2015-2024 period
-- **Strong COVID recovery** with Columbus showing the most resilience
+- **Columbus** recorded the lowest average unemployment rate (4.24%) among all analyzed metros
+- **Columbus** unemployment averaged 0.65 percentage points below Ohio state and 0.44 percentage points below the US average
+- **Consistent patterns** observed across all metros throughout the 2015-2024 period
+- **COVID-19 impact** affected all metros similarly, with varying recovery trajectories
 
-## 📈 Results Story
+## Results Story
 
-### Comprehensive Dashboard
+### Dashboard
 
 ![Dashboard View](visualizations/sa_dashboard.jpg)
 
-The comprehensive dashboard synthesizes all key findings, providing a complete picture of Columbus's economic performance relative to regional and national benchmarks.
+This dashboard synthesizes all key findings, providing a complete view of unemployment patterns across metropolitan areas and their relationship to regional and national benchmarks.
 
 ## 📁 Repository Structure
 
 ```
 BLS/
-├── README.md                           # This file
-├── .gitignore                          # Git ignore rules
-├── data/                               # Raw and processed data
-│   ├── COLU139UR.csv                   # Columbus unemployment data (FRED)
-│   ├── CINC139UR.csv                   # Cincinnati unemployment data (FRED)
-│   ├── CLEV439UR.csv                   # Cleveland unemployment data (FRED)
-│   ├── OHUR.csv                        # Ohio state unemployment data (FRED)
+├── README.md                           
+├── .gitignore                         
+├── data/                               
+│   ├── COLU139UR.csv                   
+│   ├── CINC139UR.csv                 
+│   ├── CLEV439UR.csv                   
+│   ├── OHUR.csv                      
 │   ├── seasonally_adjusted_unemployment.csv  # Combined clean dataset
-│   └── sa_summary_statistics.csv       # Summary statistics
+│   └── sa_summary_statistics.csv       
 ├── visualizations/                     # All generated charts and graphs
-│   ├── sa_main_trends.jpg              # Main trends comparison
-│   ├── sa_columbus_focus.jpg           # Columbus highlighted analysis
-│   ├── sa_ranking.jpg                  # Metro ranking bar chart
-│   ├── sa_covid_analysis.jpg           # COVID impact and recovery
-│   ├── sa_columbus_ohio_us.jpg         # Columbus vs Ohio vs US
-│   ├── sa_boxplot.jpg                  # Distribution analysis
-│   └── sa_dashboard.jpg                # Combined dashboard view
-└── code/                               # R analysis scripts
-    ├── seasonally_adjusted_analysis.R  # Main analysis script
-    └── R_Script_README.md              # Documentation for R scripts
+│   ├── sa_main_trends.jpg              
+│   ├── sa_columbus_focus.jpg           
+│   ├── sa_ranking.jpg                
+│   ├── sa_covid_analysis.jpg          
+│   ├── sa_columbus_ohio_us.jpg        
+│   ├── sa_boxplot.jpg                
+│   └── sa_dashboard.jpg              
+└── code/                               
+    └── bls_unemployment_analysis.R     
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 1. **Clone the repository**
    ```bash
@@ -67,10 +66,10 @@ BLS/
 
 3. **Run the analysis**
    ```r
-   source("code/seasonally_adjusted_analysis.R")
+   source("code/bls_unemployment_analysis.R")
    ```
 
-## 📈 Results Summary
+## Results Summary
 
 | Metro | Average Rate | Rank |
 |-------|-------------|------|
@@ -80,14 +79,13 @@ BLS/
 | Ohio | 4.89% | 4th |
 | Cleveland | 5.24% | 5th |
 
-## 🔍 Methodology
+## Methodology
 
 - **Data Source**: FRED (Federal Reserve Economic Data)
 - **Seasonal Adjustment**: All data is seasonally adjusted for valid comparisons
 - **Time Period**: January 2015 - December 2024
-- **Analysis**: Time series analysis, statistical comparisons, and visualizations
 
-## 📊 Data Sources
+## Data Sources
 
 Bureau of Labor Statistics. "Unemployment Rate for Columbus, OH (MSA)." *Federal Reserve Economic Data*, Federal Reserve Bank of St. Louis, 2024, fred.stlouisfed.org/series/COLU139UR.
 
@@ -99,21 +97,4 @@ Bureau of Labor Statistics. "Unemployment Rate for Ohio." *Federal Reserve Econo
 
 Bureau of Labor Statistics. "Unemployment Rate." *Federal Reserve Economic Data*, Federal Reserve Bank of St. Louis, 2024, fred.stlouisfed.org/series/UNRATE.
 
-## 🛠️ Technical Details
 
-- **Language**: R
-- **Key Packages**: ggplot2, dplyr, scales, lubridate
-- **Data Format**: CSV
-- **Output Format**: JPG (300 DPI)
-
-## 📝 License
-
-This project is open source and available under the MIT License.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📞 Contact
-
-For questions or suggestions, please open an issue in this repository.
